@@ -20,7 +20,7 @@ interface PlayerProp {
 const PlayerCard = (props: PlayerProp) => {
   const { colors, setColors } = useContext(ColorContext);
   const [color, setColor] = useState('');
-  const [cardColor, setCardColor] = useState('#fff');
+  const [cardColor, setCardColor] = useState('#EDEDED');
 
   const handleChange = (event: SelectChangeEvent) => {
     if (event.target.value === 'red') {
@@ -102,7 +102,7 @@ const PlayerCard = (props: PlayerProp) => {
   };
 
   return (
-    <Paper 
+    <Paper elevation={5}
       sx={{
         width: '100%', 
         height: '100%', 

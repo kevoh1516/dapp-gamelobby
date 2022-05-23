@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Expenses from "./routes/game";
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -14,7 +20,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="game" element={<Expenses />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
