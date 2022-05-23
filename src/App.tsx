@@ -18,11 +18,6 @@ const gridStyle = {
   justifyContent: 'center'
 };
 
-const linkStyle = {
-  textDecoration: 'none',
-  color: 'inherit'
-}
-
 function App() {
   const [colors, setColors] = useState({redAvail: true, blueAvail: true, yellowAvail: true, greenAvail: true});
   const value = useMemo(
@@ -53,12 +48,18 @@ function App() {
         <Button variant="outlined" 
           sx={{
             margin: 20,
-            width: 400,
-            height: 100,
             fontSize: 50,
+            padding: 5,
           }}
         >        
-          <Link to="/game" style={linkStyle}>Start Game</Link>
+          <Link to="/game" 
+            style={{
+              textDecoration: 'none',
+              color: 'inherit'
+            }}
+          >
+            Start Game
+          </Link>
         </Button>
       </Box>
     </ColorContext.Provider>
