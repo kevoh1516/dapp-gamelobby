@@ -34,7 +34,6 @@ const Lobby = () => {
 
         <Button variant="outlined" 
           sx={{
-            margin: 20,
             fontSize: 50,
             padding: 5,
           }}

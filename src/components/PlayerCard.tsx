@@ -43,7 +43,7 @@ const PlayerCard = (props: PlayerProp) => {
   return (
     <Paper elevation={5}
       sx={{
-        width: '100%', 
+        width: 300,
         height: '100%', 
         padding: 5,
         backgroundColor: colors[player] || '#EDEDED',

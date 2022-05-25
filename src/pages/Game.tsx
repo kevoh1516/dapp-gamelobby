@@ -4,7 +4,11 @@ import './Game.css'
 
 export default function Game() {
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" sx={{height: '100%'}}>
+    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" 
+      sx={{
+        height: '100%'
+      }}
+    >
       <Typography variant="h1">Game Over!</Typography>
       <Button variant="outlined" 
         sx={{
