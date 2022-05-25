@@ -43,8 +43,6 @@ const PlayerCard = (props: PlayerProp) => {
   return (
     <Paper elevation={5}
       sx={{
-        width: 300,
-        height: '100%', 
         padding: 5,
         backgroundColor: colors[player] || '#EDEDED',
       }}
@@ -55,7 +53,6 @@ const PlayerCard = (props: PlayerProp) => {
           flexDirection: 'column', 
           alignItems: 'center', 
           justifyContent: 'center',
-          height: '100%'
         }}
       >
         <Typography variant="h4">Player {props.playerNum}</Typography>

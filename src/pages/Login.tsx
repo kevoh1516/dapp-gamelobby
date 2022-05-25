@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Grid, Select, Typography, Box, Button, TextField } from '@mui/material';
 import { createContext, useState, useContext, useMemo } from 'react';
 import './game.css'
-import { AuthContext } from "../components/AuthProvider";
+import { AuthContext } from "../context/AuthProvider";
 
 export default function Login() {
   const [username, setUsername] = useState('');

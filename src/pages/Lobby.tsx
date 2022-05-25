@@ -1,33 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
 import { Grid, Select, Typography, Box, Button } from '@mui/material';
 import PlayerCard from '../components/PlayerCard';
 import { createContext, useState, useContext, useMemo } from 'react';
 import { Link } from "react-router-dom";
 import ColorProvider from '../context/ColorProvider';
-
-const gridStyle = {
-  display: 'flex', 
-  justifyContent: 'center'
-};
+import './Lobby.css'
 
 const Lobby = () => {
   return (
     <ColorProvider>
-      <Box display="flex" flexDirection="column" alignItems="center">
-        <Typography variant='h1' padding={10}>Game Lobby</Typography>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-evenly">
+        <Typography variant='h1'>Game Lobby</Typography>
 
-        <Grid container rowSpacing={15} columnSpacing={20} alignItems="center" paddingX={30}>
-          <Grid item xs={6} sx={gridStyle}>
+        <Grid container rowSpacing={10} columnSpacing={10} width="1000px">
+          <Grid item xs={6}>
             <PlayerCard playerNum={1} />
           </Grid>
-          <Grid item xs={6} sx={gridStyle}>
+          <Grid item xs={6}>
             <PlayerCard playerNum={2} />
           </Grid>
-          <Grid item xs={6} sx={gridStyle}>
+          <Grid item xs={6}>
             <PlayerCard playerNum={3} />
           </Grid>
-          <Grid item xs={6} sx={gridStyle}>
+          <Grid item xs={6}>
             <PlayerCard playerNum={4} />
           </Grid>
         </Grid>
