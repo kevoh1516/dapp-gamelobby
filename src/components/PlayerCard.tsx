@@ -33,7 +33,6 @@ const PlayerCard = (props: PlayerProp) => {
     // event.target.value
     setColors((prevState: any) => {
       const newData = {...prevState};
-      console.log("new data", newData);
       newData.taken[newData[player]] = false;
       newData[player] = event.target.value;
       newData.taken[event.target.value] = true;
