@@ -9,7 +9,7 @@ import {
   InputLabel,
   Paper
 } from '@mui/material';
-import { ColorContext } from '../App'
+import { ColorContext } from '../context/ColorProvider';
 import { createContext, useState, useContext, useMemo } from 'react';
 import { flexbox } from '@mui/system';
 
@@ -17,88 +17,28 @@ interface PlayerProp {
   playerNum: number;
 }
 
+const bgColors = {
+  red: '#DB5C4D',
+  blue: '#6066FA',
+  green: '#52FF57',
+  yellow: '#F6FF7E'
+}
+
 const PlayerCard = (props: PlayerProp) => {
   const { colors, setColors } = useContext(ColorContext);
-  const [color, setColor] = useState('');
-  const [cardColor, setCardColor] = useState('#EDEDED');
+
+  const player = 'p' + props.playerNum;
 
   const handleChange = (event: SelectChangeEvent) => {
-    if (event.target.value === 'red') {
-      setCardColor('#FFA49E');
-      setColors((prevState: any) => {
-        return {
-          ...prevState,
-          redAvail: false
-        }
-      })
-    }
-
-    if (event.target.value === 'yellow') {
-      setCardColor('#F5F184');
-      setColors((prevState: any) => {
-        return {
-          ...prevState,
-          yellowAvail: false
-        }
-      })
-    }
-
-    if (event.target.value === 'blue') {
-      setCardColor('#7E7CE6');
-      setColors((prevState: any) => {
-        return {
-          ...prevState,
-          blueAvail: false
-        }
-      })
-    }
-
-    if (event.target.value === 'green') {
-      setCardColor('#7DF588');
-      setColors((prevState: any) => {
-        return {
-          ...prevState,
-          greenAvail: false
-        }
-      })
-    }
-
-    if (color === 'red') {
-      setColors((prevState: any) => {
-        return {
-          ...prevState,
-          redAvail: true
-        }
-      })
-    }
-
-    if (color === 'blue') {
-      setColors((prevState: any) => {
-        return {
-          ...prevState,
-          blueAvail: true
-        }
-      })
-    }
-
-    if (color === 'yellow') {
-      setColors((prevState: any) => {
-        return {
-          ...prevState,
-          yellowAvail: true
-        }
-      })
-    }
-
-    if (color === 'green') {
-      setColors((prevState: any) => {
-        return {
-          ...prevState,
-          greenAvail: true
-        }
-      })
-    }
-    setColor(event.target.value as string);
+    // event.target.value
+    setColors((prevState: any) => {
+      const newData = {...prevState};
+      console.log("new data", newData);
+      newData.taken[newData[player]] = false;
+      newData[player] = event.target.value;
+      newData.taken[event.target.value] = true;
+      return newData;
+    });
   };
 
   return (
@@ -107,7 +47,7 @@ const PlayerCard = (props: PlayerProp) => {
         width: '100%', 
         height: '100%', 
         padding: 5,
-        backgroundColor: cardColor,
+        backgroundColor: colors[player] || '#EDEDED',
       }}
     >
       <Container 
@@ -126,14 +66,14 @@ const PlayerCard = (props: PlayerProp) => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={color}
+            value={colors[player]}
             label="Color"
             onChange={handleChange}
           >
-            <MenuItem value={'red'} disabled={!colors.redAvail}>Red</MenuItem>
-            <MenuItem value={'yellow'} disabled={!colors.yellowAvail}>Yellow</MenuItem>
-            <MenuItem value={'green'} disabled={!colors.greenAvail}>Green</MenuItem>
-            <MenuItem value={'blue'} disabled={!colors.blueAvail}>Blue</MenuItem>
+            <MenuItem value={bgColors.red} disabled={colors.taken[bgColors.red]}>Red</MenuItem>
+            <MenuItem value={bgColors.yellow} disabled={colors.taken[bgColors.yellow]}>Yellow</MenuItem>
+            <MenuItem value={bgColors.green} disabled={colors.taken[bgColors.green]}>Green</MenuItem>
+            <MenuItem value={bgColors.blue} disabled={colors.taken[bgColors.blue]}>Blue</MenuItem>
           </Select>
         </FormControl>
       </Container>

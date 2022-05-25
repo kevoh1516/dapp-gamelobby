@@ -8,7 +8,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Expenses from "./routes/game";
+import Game from "./routes/Game";
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -23,7 +23,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="game" element={<Expenses />} />
+        <Route path="game" element={<Game />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

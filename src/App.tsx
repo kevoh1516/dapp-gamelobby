@@ -5,13 +5,7 @@ import PlayerCard from './components/PlayerCard';
 import './App.css';
 import { createContext, useState, useContext, useMemo } from 'react';
 import { Link } from "react-router-dom";
-
-interface ContextState {
-  colors: any;
-  setColors: any;
-}
-
-export const ColorContext = createContext({} as ContextState);
+import ColorProvider from './context/ColorProvider';
 
 const gridStyle = {
   display: 'flex', 
@@ -19,14 +13,9 @@ const gridStyle = {
 };
 
 function App() {
-  const [colors, setColors] = useState({redAvail: true, blueAvail: true, yellowAvail: true, greenAvail: true});
-  const value = useMemo(
-    () => ({ colors, setColors }), 
-    [colors]
-  );
 
   return (
-    <ColorContext.Provider value={value}>
+    <ColorProvider>
       <Box display="flex" flexDirection="column" alignItems="center">
         <Typography variant='h1' padding={10}>Game Lobby</Typography>
 
@@ -62,7 +51,7 @@ function App() {
           </Link>
         </Button>
       </Box>
-    </ColorContext.Provider>
+    </ColorProvider>
   );
 }
 

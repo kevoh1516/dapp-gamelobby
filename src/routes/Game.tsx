@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { Grid, Select, Typography, Box, Button } from '@mui/material';
-import './game.css'
+import './Game.css'
 
-export default function Expenses() {
+export default function Game() {
   return (
     <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" sx={{height: '100%'}}>
       <Typography variant="h1">Game Over!</Typography>
