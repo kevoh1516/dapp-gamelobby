@@ -1,45 +1,77 @@
 import { Link } from "react-router-dom";
 import { Grid, Select, Typography, Box, Button, TextField } from '@mui/material';
-import { createContext, useState, useContext, useMemo } from 'react';
-import './game.css'
+import React, { createContext, useState, useContext, useMemo } from 'react';
 import { AuthContext } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [regUsername, setRegUsername] = useState('');
+  const [regEmail, setRegEmail] = useState('');
+  const [regPassword, setRegPassword] = useState('');
 
-  let { user, signin, signout } = useContext(AuthContext);
+  const [logEmail, setLogEmail] = useState('');
+  const [logPassword, setLogPassword] = useState('');
 
-  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+  let { user, signin, signout, signup } = useContext(AuthContext);
+  let navigate = useNavigate();
+
+  const handleRegUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRegUsername(event.target.value);
   };
 
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
+  const handleRegEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRegEmail(event.target.value);
   };
+
+  const handleRegPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRegPassword(event.target.value);
+  };
+
+  const handleLogEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLogEmail(event.target.value);
+  };
+
+  const handleLogPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLogPassword(event.target.value);
+  };
+
+  const handleSignin = () => {
+    console.log("login");
+    signin(logEmail, logPassword).then(() => {
+      navigate('/');
+    }).catch((err) => {
+      console.log("error", err);
+    });
+  }
+
+  const handleSignup = () => {
+    signup(regUsername, regEmail, regPassword).then(() => {
+      navigate('/');
+    }).catch((err) => {
+      console.log("error", err);
+    });
+  }
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" sx={{height: '100%'}}>
-      <Typography variant="h1">Login</Typography>
+    <Box display="flex" alignItems="center" justifyContent="space-evenly" sx={{height: '100vh'}}>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-evenly" sx={{height: 250}}>
+        <Typography variant="h3">Login</Typography>
 
-      <TextField id="username" label="Username" variant="outlined" value={username} onChange={handleUsernameChange} />
-      <TextField id="password" label="Password" variant="outlined" value={password} onChange={handlePasswordChange} />
+        <TextField label="Email" variant="outlined" value={logEmail} onChange={handleLogEmailChange} sx={{width: '100%'}}/>
+        <TextField label="Password" variant="outlined" value={logPassword} onChange={handleLogPasswordChange} sx={{width: '100%'}}/>
 
-      <Button variant="outlined" 
-        sx={{
-          fontSize: 50,
-          padding: 5,
-        }}
-      >
-        <Link to="/" 
-          style={{
-            textDecoration: 'none',
-            color: 'inherit'
-          }}
-        >
-          Back to Lobby
-        </Link>
-      </Button>
+        <Button variant="outlined" sx={{width: '100%'}} onClick={handleSignin}>Login</Button>
+      </Box>
+
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-evenly" sx={{height: 310}}>
+        <Typography variant="h3">Register</Typography>
+
+        <TextField label="Username" variant="outlined" value={regUsername} onChange={handleRegUsernameChange} sx={{width: '100%'}}/>
+        <TextField label="Email" variant="outlined" value={regEmail} onChange={handleRegEmailChange} sx={{width: '100%'}}/>
+        <TextField label="Password" variant="outlined" value={regPassword} onChange={handleRegPasswordChange} sx={{width: '100%'}}/>
+
+        <Button variant="outlined" sx={{width: '100%'}} onClick={handleSignup}>Register</Button>
+      </Box>
     </Box>
   );
 }

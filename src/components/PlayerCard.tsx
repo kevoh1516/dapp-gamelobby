@@ -12,6 +12,8 @@ import {
 import { ColorContext } from '../context/ColorProvider';
 import { createContext, useState, useContext, useMemo } from 'react';
 import { flexbox } from '@mui/system';
+import { uploadColors, retrieveColors } from '../database/colors';
+import { AuthContext } from '../context/AuthProvider';
 
 interface PlayerProp {
   playerNum: number;
@@ -26,6 +28,7 @@ const bgColors = {
 
 const PlayerCard = (props: PlayerProp) => {
   const { colors, setColors } = useContext(ColorContext);
+  let { user, signin, signout, signup } = useContext(AuthContext);
 
   const player = 'p' + props.playerNum;
 
@@ -33,9 +36,16 @@ const PlayerCard = (props: PlayerProp) => {
     // event.target.value
     setColors((prevState: any) => {
       const newData = {...prevState};
-      newData.taken[newData[player]] = false;
+      if (newData[player]) {
+        newData.taken[newData[player]] = false;
+      }
       newData[player] = event.target.value;
       newData.taken[event.target.value] = true;
+
+      if (user) {
+        uploadColors(newData);
+      }
+
       return newData;
     });
   };
