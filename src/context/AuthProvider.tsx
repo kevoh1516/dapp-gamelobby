@@ -1,15 +1,15 @@
 import { User } from 'firebase/auth';
-import React, { createContext, useState, useContext, useMemo } from 'react';
-import { firebaseAuthProvider } from './auth';
+import { useState, createContext } from 'react';
+import { firebaseAuthProvider } from '../firebase/firebaseAuth'
 
 interface AuthContextType {
-  user: User;
+  user: User | null;
   signin: (email: string, password: string) => Promise<void>;
   signout: () => void;
   signup: (username: string, email: string, password: string) => Promise<void>;
 }
 
-export let AuthContext = React.createContext<AuthContextType>(null!);
+export let AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   let [user, setUser] = useState<any>(null);

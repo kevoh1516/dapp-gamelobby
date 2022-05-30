@@ -1,7 +1,5 @@
-import { DocumentData } from "firebase/firestore";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { DocumentReference, DocumentSnapshot } from '@google-cloud/firestore';
-import { functions } from "../firebase/firebaseConfig";
+import { httpsCallable } from "firebase/functions";
+import { functions } from "../firebaseConfig";
 
 const _uploadColors = httpsCallable(functions, 'uploadColors');
 const _retrieveColors = httpsCallable(functions, 'retrieveColors');

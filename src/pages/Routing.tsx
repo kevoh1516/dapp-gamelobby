@@ -8,7 +8,7 @@ import Lobby from "./Lobby";
 import Login from "./Login";
 import Profile from "./Profile";
 import AuthProvider from "../context/AuthProvider";
-import ColorProvider, { ColorContext } from '../context/ColorProvider';
+import ColorProvider from '../context/ColorProvider';
 
 const Routing = () => {
   return (

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Game from "./pages/Game";
 import Routing from './pages/Routing';
 
 import '@fontsource/roboto/300.css';

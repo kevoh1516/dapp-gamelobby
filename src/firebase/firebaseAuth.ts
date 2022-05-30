@@ -1,11 +1,16 @@
-import { getAuth, createUserWithEmailAndPassword, updateProfile, UserCredential, signInWithEmailAndPassword } from "firebase/auth";
+import { User } from 'firebase/auth';
+import { 
+  createUserWithEmailAndPassword, 
+  updateProfile, 
+  UserCredential, 
+  signInWithEmailAndPassword 
+} from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 
-/**
- * This represents some generic auth provider API, like Firebase.
- */
- const firebaseAuthProvider = {
+export const firebaseAuthProvider = {
+
   isAuthenticated: false,
+
   signin(email: string, password: string) {
     return new Promise((resolve, reject) => {
       signInWithEmailAndPassword(auth, email, password)
@@ -20,10 +25,12 @@ import { auth } from "../firebase/firebaseConfig";
         });
     })
   },
+
   signout() {
     firebaseAuthProvider.isAuthenticated = false;
     return auth.signOut();
   },
+
   signup(username: string, email: string, password: string) {
     return new Promise((resolve, reject) => {
       createUserWithEmailAndPassword(auth, email, password)
@@ -45,6 +52,9 @@ import { auth } from "../firebase/firebaseConfig";
         });
     })
   }
+  
 };
 
-export { firebaseAuthProvider };
+export const setProfilePicture = async (user: User, photoURL: string | null) => {
+  updateProfile(user, { photoURL: photoURL});
+}

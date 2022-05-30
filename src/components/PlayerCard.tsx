@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Container, 
   Typography, 
@@ -10,9 +9,8 @@ import {
   Paper
 } from '@mui/material';
 import { ColorContext } from '../context/ColorProvider';
-import { createContext, useState, useContext, useMemo } from 'react';
-import { flexbox } from '@mui/system';
-import { uploadColors, retrieveColors } from '../database/colors';
+import { useContext } from 'react';
+import { uploadColors } from '../firebase/functions/colors';
 import { AuthContext } from '../context/AuthProvider';
 
 interface PlayerProp {
@@ -28,12 +26,11 @@ const bgColors = {
 
 const PlayerCard = (props: PlayerProp) => {
   const { colors, setColors } = useContext(ColorContext);
-  let { user, signin, signout, signup } = useContext(AuthContext);
+  let { user } = useContext(AuthContext);
 
   const player = 'p' + props.playerNum;
 
   const handleChange = (event: SelectChangeEvent) => {
-    // event.target.value
     setColors((prevState: any) => {
       const newData = {...prevState};
       if (newData[player]) {

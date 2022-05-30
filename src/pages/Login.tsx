@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
-import { Grid, Select, Typography, Box, Button, TextField } from '@mui/material';
-import React, { createContext, useState, useContext, useMemo } from 'react';
+import { Typography, Box, Button, TextField } from '@mui/material';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from "../context/AuthProvider";
+import { ColorContext } from "../context/ColorProvider";
 import { useNavigate } from "react-router-dom";
+import { retrieveColors } from '../firebase/functions/colors';
 
 export default function Login() {
   const [regUsername, setRegUsername] = useState('');
@@ -12,7 +13,8 @@ export default function Login() {
   const [logEmail, setLogEmail] = useState('');
   const [logPassword, setLogPassword] = useState('');
 
-  let { user, signin, signout, signup } = useContext(AuthContext);
+  let { signin, signup } = useContext(AuthContext);
+  const { setColors, resetColors } = useContext(ColorContext);
   let navigate = useNavigate();
 
   const handleRegUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +40,15 @@ export default function Login() {
   const handleSignin = () => {
     console.log("login");
     signin(logEmail, logPassword).then(() => {
-      navigate('/');
+      retrieveColors().then((data) => {
+        if (data.data) {
+          console.log("retrieved colors", data.data);
+          setColors(data.data);
+        } else {
+          resetColors();
+        }
+        navigate('/');
+      });
     }).catch((err) => {
       console.log("error", err);
     });
@@ -46,6 +56,7 @@ export default function Login() {
 
   const handleSignup = () => {
     signup(regUsername, regEmail, regPassword).then(() => {
+      resetColors();
       navigate('/');
     }).catch((err) => {
       console.log("error", err);

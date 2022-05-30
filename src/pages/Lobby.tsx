@@ -1,31 +1,10 @@
-import { Grid, Select, Typography, Box, Button } from '@mui/material';
+import { Grid, Typography, Box, Button } from '@mui/material';
 import PlayerCard from '../components/PlayerCard';
-import { createContext, useState, useContext, useMemo, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import ColorProvider, { ColorContext } from '../context/ColorProvider';
 import TopBar from '../components/TopBar';
 import { useNavigate } from "react-router-dom";
-import { uploadColors, retrieveColors } from '../database/colors';
-import { AuthContext } from "../context/AuthProvider";
-import useDidMountEffect from '../hooks/useDidMountEffect';
 
 const Lobby = () => {
   let navigate = useNavigate();
-  const { colors, setColors } = useContext(ColorContext);
-  let { user, signin, signout, signup } = useContext(AuthContext);
-
-  useEffect(() => {
-    console.log("user changed");
-    if (user) {
-      // TODO: retrieve and set colors
-      retrieveColors().then((data) => {
-        if (data.data) {
-          console.log("retrieved colors", data.data);
-          setColors(data.data);
-        }
-      });
-    }
-  }, [user]);
 
   return (
     <>

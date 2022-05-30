@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
-import { DocumentReference } from '@google-cloud/firestore'
+import {DocumentReference} from "@google-cloud/firestore";
 
-import admin = require('firebase-admin');
+import admin = require("firebase-admin");
 admin.initializeApp();
 
 // // Start writing Firebase Functions
@@ -17,16 +17,17 @@ export const uploadColors = functions.https.onCall((data, context) => {
   const colors = data.colors;
   // Authentication / user information is automatically added to the request.
   const uid = context.auth?.uid;
-  const docRef = admin.firestore().collection('colors').doc(uid!);
+  const docRef = admin.firestore().collection("colors").doc(uid!);
   return docRef.set(colors);
 });
 
 export const retrieveColors = functions.https.onCall((data, context) => {
   // Authentication / user information is automatically added to the request.
   const uid = context.auth?.uid;
-  const docRef: DocumentReference = admin.firestore().collection('colors').doc(uid!);
+  const docRef: DocumentReference = admin.firestore()
+      .collection("colors").doc(uid!);
   return docRef.get().then((docSnap) => {
-    let data = docSnap.data();
+    const data = docSnap.data();
     return data;
   });
 });
