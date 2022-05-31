@@ -69,7 +69,7 @@ export default function Login() {
         <Typography variant="h3">Login</Typography>
 
         <TextField label="Email" variant="outlined" value={logEmail} onChange={handleLogEmailChange} sx={{width: '100%'}}/>
-        <TextField label="Password" variant="outlined" value={logPassword} onChange={handleLogPasswordChange} sx={{width: '100%'}}/>
+        <TextField label="Password" type="password" variant="outlined" value={logPassword} onChange={handleLogPasswordChange} sx={{width: '100%'}}/>
 
         <Button variant="outlined" sx={{width: '100%'}} onClick={handleSignin}>Login</Button>
       </Box>
@@ -79,7 +79,7 @@ export default function Login() {
 
         <TextField label="Username" variant="outlined" value={regUsername} onChange={handleRegUsernameChange} sx={{width: '100%'}}/>
         <TextField label="Email" variant="outlined" value={regEmail} onChange={handleRegEmailChange} sx={{width: '100%'}}/>
-        <TextField label="Password" variant="outlined" value={regPassword} onChange={handleRegPasswordChange} sx={{width: '100%'}}/>
+        <TextField label="Password" type="password" variant="outlined" value={regPassword} onChange={handleRegPasswordChange} sx={{width: '100%'}}/>
 
         <Button variant="outlined" sx={{width: '100%'}} onClick={handleSignup}>Register</Button>
       </Box>
