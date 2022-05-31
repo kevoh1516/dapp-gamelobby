@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { uploadProfilePicture, getProfilePictureURL } from '../firebase/firebaseStorage';
 import { AuthContext } from '../context/AuthProvider';
 import { setProfilePicture } from '../firebase/firebaseAuth';
+import { useNavigate } from "react-router-dom";
 
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
@@ -10,6 +11,7 @@ const Profile = () => {
   const [file, setFile] = useState<File | null>(null);
   const [fileDataURL, setFileDataURL] = useState<any>('');
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   /* https://blog.logrocket.com/using-filereader-api-preview-images-react/ */
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,11 +63,12 @@ const Profile = () => {
 
   return (
     <>
-      <Box display="flex" flexDirection="column" alignItems="center">
+      <Box sx={{height: 350}} display="flex" flexDirection="column" alignItems="center" justifyContent="space-evenly">
         <Avatar src={fileDataURL || user?.photoURL} sx={{ width: 200, height: 200}}/>
         <Button
-          variant="outlined"
+          variant="contained"
           component="label"
+          sx={{width: 150}}
         >
           Select Image
           <input
@@ -75,7 +78,10 @@ const Profile = () => {
             accept="image/*"
           />
         </Button>
-        <Button onClick={saveHandler}>Save Changes</Button>
+        <Button sx={{width: 150}} variant="outlined" onClick={saveHandler}>Save Changes</Button>
+        <Button sx={{width: 150}} variant="outlined" onClick={() => {navigate('/');}}>        
+          Back To Lobby
+        </Button>
       </Box>
     </>
   )
