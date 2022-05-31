@@ -1,8 +1,8 @@
 import { Box, Button, Avatar } from '@mui/material';
 import { useState, useEffect, useContext } from 'react';
-import { uploadProfilePicture, getProfilePictureURL } from '../firebase/firebaseStorage';
+import { uploadProfilePicture, getProfilePictureURL } from '../apis/firebaseStorage';
 import { AuthContext } from '../context/AuthProvider';
-import { setProfilePicture } from '../firebase/firebaseAuth';
+import { setProfilePicture } from '../apis/firebaseAuth';
 import { useNavigate } from "react-router-dom";
 
 const imageMimeType = /image\/(png|jpg|jpeg)/i;

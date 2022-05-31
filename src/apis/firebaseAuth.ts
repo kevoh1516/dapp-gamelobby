@@ -5,7 +5,7 @@ import {
   UserCredential, 
   signInWithEmailAndPassword 
 } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import { auth } from "./firebaseConfig";
 
 export const firebaseAuthProvider = {
 

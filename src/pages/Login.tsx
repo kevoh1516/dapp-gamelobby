@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from "../context/AuthProvider";
 import { ColorContext } from "../context/ColorProvider";
 import { useNavigate } from "react-router-dom";
-import { retrieveColors } from '../firebase/functions/colors';
+import { retrieveColors } from '../apis/clientFunctions/colors';
 
 export default function Login() {
   const [regUsername, setRegUsername] = useState('');
