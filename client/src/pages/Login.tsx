@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthProvider";
 import { ColorContext } from "../context/ColorProvider";
 import { useNavigate } from "react-router-dom";
 import { retrieveColors } from '../apis/clientFunctions/colors';
+const axios = require('axios').default;
 
 export default function Login() {
   const [regUsername, setRegUsername] = useState('');
@@ -39,8 +40,8 @@ export default function Login() {
 
   const handleSignin = () => {
     console.log("login");
-    signin(logEmail, logPassword).then(() => {
-      retrieveColors().then((data) => {
+    signin(logEmail, logPassword).then((user) => {
+      /*retrieveColors().then((data) => {
         if (data.data) {
           console.log("retrieved colors", data.data);
           setColors(data.data);
@@ -48,7 +49,22 @@ export default function Login() {
           resetColors();
         }
         navigate('/');
-      });
+      }); */
+
+      console.log("user id", user.uid);
+      axios.get('/getColors', {
+        params: {
+          uid: user.uid
+        }
+      }).then(({ data }: { data: any }) => {
+        console.log(data);
+        if (data) {
+          setColors(data);
+        } else {
+          resetColors();
+        }
+        navigate('/');
+      })
     }).catch((err) => {
       console.log("error", err);
     });

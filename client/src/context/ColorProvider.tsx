@@ -9,10 +9,10 @@ interface ContextState {
 export const ColorContext = createContext({} as ContextState);
 
 const ColorProvider = ({ children }: { children: React.ReactNode }) => {
-  const [colors, setColors] = useState({p1: '', p2: '', p3: '', p4: '', taken: {}});
+  const [colors, setColors] = useState({p1: '', p2: '', p3: '', p4: '', red: false, blue: false, green: false, yellow: false});
 
   const resetColors = () => {
-    setColors({p1: '', p2: '', p3: '', p4: '', taken: {}});
+    setColors({p1: '', p2: '', p3: '', p4: '', red: false, blue: false, green: false, yellow: false});
   }
 
   const value = useMemo(

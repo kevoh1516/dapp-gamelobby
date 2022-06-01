@@ -4,7 +4,7 @@ import { firebaseAuthProvider } from '../apis/firebaseAuth'
 
 interface AuthContextType {
   user: User | null;
-  signin: (email: string, password: string) => Promise<void>;
+  signin: (email: string, password: string) => Promise<User>;
   signout: () => void;
   signup: (username: string, email: string, password: string) => Promise<void>;
 }
@@ -16,10 +16,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   let signin = (email: string, password: string) => {
     console.log("in authprovider");
-    return new Promise((resolve: (value: void) => any, reject) => {
+    return new Promise<User>((resolve, reject) => {
       firebaseAuthProvider.signin(email, password).then((user) => {
         setUser(user);
-        resolve();
+        resolve(user);
       }).catch((err) => {
         reject(err);
       });

@@ -4,8 +4,7 @@ datasource db {
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["debian-openssl-1.1.x"]
+  provider = "prisma-client-js"
 }
 
 model Post {
@@ -17,6 +16,19 @@ model Post {
   published   Boolean   @default(false)
   author      User      @relation(fields: [authorId], references: [id])
   authorId    Int
+}
+
+
+model Color {
+  id      String  @id
+  p1      String
+  p2      String
+  p3      String
+  p4      String
+  red     Boolean
+  blue    Boolean
+  yellow  Boolean
+  green   Boolean
 }
 
 

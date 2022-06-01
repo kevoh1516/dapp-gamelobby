@@ -12,7 +12,7 @@ export const firebaseAuthProvider = {
   isAuthenticated: false,
 
   signin(email: string, password: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<User>((resolve, reject) => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential: UserCredential) => {
           // Signed in 
