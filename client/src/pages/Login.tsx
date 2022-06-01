@@ -3,7 +3,6 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from "../context/AuthProvider";
 import { ColorContext } from "../context/ColorProvider";
 import { useNavigate } from "react-router-dom";
-import { retrieveColors } from '../apis/clientFunctions/colors';
 const axios = require('axios').default;
 
 export default function Login() {

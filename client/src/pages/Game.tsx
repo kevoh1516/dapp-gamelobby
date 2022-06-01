@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { Grid, Select, Typography, Box, Button } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
 export default function Game() {

@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start-backend": "npx prisma migrate dev --name init && node server.js",
+    "start-firebase": "cd client && firebase emulators:start --only auth,storage",
+    "start-frontend": "cd client && npm start"
   },
   "repository": {
     "type": "git",

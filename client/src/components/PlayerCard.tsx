@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import { ColorContext } from '../context/ColorProvider';
 import { useContext } from 'react';
-import { uploadColors } from '../apis/clientFunctions/colors';
 import { AuthContext } from '../context/AuthProvider';
 
 interface PlayerProp {

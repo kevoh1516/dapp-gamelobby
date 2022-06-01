@@ -23,8 +23,6 @@ export const storage = getStorage(app);
 if (process.env.NODE_ENV === 'development') {
   console.log("in development!");
   connectAuthEmulator(auth, "http://localhost:9099");
-  connectFirestoreEmulator(db, 'localhost', 8080);
-  connectFunctionsEmulator(functions, "localhost", 5001);
   connectStorageEmulator(storage, "localhost", 9199);
 }
 
